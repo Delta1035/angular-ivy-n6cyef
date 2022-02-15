@@ -22,7 +22,8 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     setTimeout(() => {
-      this.profile.name = 'Fer';
+      // this.profile.name = 'Fer';
+      // this.profile = Object.assign({}, this.profile, { name: 'Fer' });
       // this.cd.detectChanges();
       // this.cd.markForCheck();
     }, 2000);

@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'profile-age',
@@ -6,6 +6,14 @@ import { Component, Input } from '@angular/core';
         <p>Age: {{age}}</p>
     `,
 })
-export class ProfileAgeComponent {
+export class ProfileAgeComponent implements OnInit {
+  constructor(private cd: ChangeDetectorRef) {}
+  ngOnInit(): void {
+    setInterval(() => {
+      this.age++;
+      console.log(this.age);
+      this.cd.markForCheck();
+    }, 1000);
+  }
   @Input() age: number;
 }

@@ -1,4 +1,10 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  Input,
+  OnInit,
+} from '@angular/core';
+import { timeInterval } from 'rxjs/operators';
 
 @Component({
   selector: 'profile-card',
@@ -9,8 +15,16 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
        </div>
     `,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  // changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ProfileCardComponent {
+export class ProfileCardComponent implements OnInit {
+  counter = 1;
+  ngOnInit(): void {
+    // throw new Error('Method not implemented.');
+    setInterval(() => {
+      this.counter++;
+      this.profile.name = 'from card' + this.counter;
+      this.profile.age += 10;
+    }, 2000);
+  }
   @Input() profile: { name: string; age: number };
 }
